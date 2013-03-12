@@ -1,0 +1,31 @@
+/*
+  This is the sexiest style ever :]
+*/
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  margin:0;
+}
+
+#console{
+  background-color:#222;
+  padding:50px;
+  height:900000px;
+  font-family:courier!important;
+  font-size:0;
+}
+
+#console span{
+  font-size:16px;
+  color:#86F74D;
+  display:inline-block;
+  padding:3px 0;
+}
+#input{
+  color:#F7994D;
+}
+#data-parser{
+  display:none;
+}
+

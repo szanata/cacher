@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--[if IE]>
+      <meta http-equiv="X-UA-Compatible" content="IE=9" >
+    <![endif]-->
+    <meta name="description" content="Site pessoal de Stéfano Stypulkowski Zanata, engenheiro de front-end e desenvolvedor javascript. Contém o portfolio de aplicativos e informações para contato. Disponível em Porto Alegre.">
+    <meta name="keywords" content="webdeveloper, javascript developer, webdesigner, frontend, front-end, html developer, css developer, front-end engineering, developer porto alegre">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Stéfano Stypulkowski Zanata">
+    
+    <title>Stéfano Zanata</title>
+    
+    <link type='text/css' href='/stylesheets/bundles/all/1353993323.css' rel='stylesheet' media='all' />
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19972060-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>    
+    <div id="page-loader">
+      <div></div>
+    </div>
+  
+    <div id="menu-bg"></div>
+    <div id="menu">        
+      <div id="menu-inner-wrapper">
+        <div id="logo">Stéfano Zanata</div>
+        <div id="menu-items">
+          <a href="#home">Início</a>
+          <a href="#about">Sobre</a>
+          <a href="#apps">Apps</a>
+          <a href="#sites">Sites</a>
+          <a href="#contact">Contato</a>
+        </div>
+      </div>
+    </div>
+    
+    <div id="page-wrapper">
+  
+      <div class="bar" id="home">
+        <div class="bar-inner-wrapper">
+          <div id="presentation-wrapper">
+            <div id="presentation" style="display:none;">
+              <p>Olá! Bem vindo ao meu site!</p>
+              <p>Meu nome é Stéfano Zanata, sou um desenvolvedor web de Porto Alegre, Rio Grande do Sul.</p>
+              <p>Sou aficcionado por programação, usabilidade, javascript, agilidade... enfim, tudo que tem a ver com tecnologia web o/</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bar" id="about">
+        <div class="bar-inner-wrapper">
+          <h1 class="quote">Se não for para fazer bem feito, melhor nem fazer.</h1>
+          <div class="column left">
+            <h2>O que já fiz?</h2>
+            <p>Como desenvolvedor Java, já atuei em projetos coorporativos grandes, além de alguns projetos menores.</p>
+            <p>Desenvolvi <b>apps RIA</b> em javascript com prósito de permitir uma experiência diferenciada com o usuário.</p>
+            <h2>O que eu faço agora?</h2>
+            <p>Atuo como <b>engenheiro de front-end</b> no <a href="http://www.superplayer.com.br" target="_blank">Superplayer</a>, além de desenvolvedor diversos <b>projetos opensource</b> em javascript.</p>
+            <p>Faço também alguns freelances de programação, escrevo meu blog e cuido do meu TCC (:</p>
+            <h2>O que eu quero fazer?</h2>
+            <p>Continuar atuando com <b>tecnologia de ponta</b> em projetos inovadores.</p>
+            <p>Aperfeiçoar minhas técnicas de desenvolvimento <b>front-end</b> e <b>javascript</b>, além de contribuir para a comunidade o/</p>
+            <h2>Minhas premissas?</h2>
+            <p>O foco do meu trabalho é a <b>qualidade</b>, por mais subjetivo que isto possa ser.</p>
+            <p>Qualidade, em geral, é aquilo que <b>satisfaz as necessidades do cliente</b>. Sendo ele o maior interessado e beneficiado por ela.</p>
+            <p>Sigo, nas minhas apps, requisitos de <b>usabilidade</b> bastante estritos, pois isto é um bom ponto de partida para se atingir a qualidade.</p>
+            <p>As apps devem ser simples, rápidas e diretas. Porém, mesmo que isto seja irrelevante para o cliente, elas devem ser bem programadas também, pois é o produto do meu trabalhos. Se não for para fazer bem feito, melhor nem fazer.</p>
+          </div>
+          <div class="column right">
+            <h2>Minha habilidades</h2>
+            <table id="skills">
+              <thead>
+                <tr><th>Tecnologia</th><th>Nível</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>AJAX2, jsonp e CORS</td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>git</td><td><div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div></td></tr>
+                <tr><td>heroku</td><td><div class="skill-bar"><div class="skill-level" style="width: 50%;"></div></div></td></tr>
+                <tr><td>Otimização de front-end</td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>Hibernate</td><td><div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div></td></tr>
+                <tr><td>HTML5 e CSS3</td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>HTML5 for mobile</td><td><div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div></td></tr>
+                <tr><td>Java</td><td><div class="skill-bar"><div class="skill-level" style="width: 60%;"></div></div></td></tr>
+                <tr><td>JavaScript <sup>(1.6, 1.7, 1.8)</sup></td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>jQuery</td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>jQuery mobile</td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>jQuery UI</td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>NodeJS</td><td><div class="skill-bar"><div class="skill-level" style="width: 60%;"></div></div></td></tr>
+                <tr><td>PostgreSQL</td><td><div class="skill-bar"><div class="skill-level" style="width: 75%; "></div></div></td></tr>
+                <tr><td>Ruby</td><td><div class="skill-bar"><div class="skill-level" style="width: 60%;"></div></div></td></tr>
+                <tr><td>Sinatra</td><td><div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div></td></tr>
+                <tr><td>VRaptor</td><td><div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div></td></tr>
+              </tbody>
+            </table>
+            <h2>Gostou do que leu?</h2>
+            <p>Se quiser mais informações sobre mim ou meus projetos, estou acessível pelas redes sociais ou por email. <a href="#contact" class="inner-link">Clique aqui</a> para ver todos os canais.</p>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      
+            <div class="bar" id="apps">
+        <div class="bar-inner-wrapper">
+          <h1>Minhas apps e libs</h1>
+          <div class="column left">
+          
+            <div class="app-item">
+              <h2>ie-plaholder <sup>novo</sup></h2>
+              <p>Todo mundo adora os placeholders, uma das features do HTML5 que mais impactou no layout dos sites. Porém o Internet Explorer não suporta ele nem em modo de compatibilidade. Para resolver isto, desenvolvi um script, que depois de importado no projeto, adiciona esta feature sem quebrar qualquer regra do HTML5.</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/ie-placeholder" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+          
+            <div class="app-item">
+              <h2>Decimal Mask</h2>
+              <p>Formatar um campo decimal sempre foi tedioso e problemático. Não mais, agora é simples com este plguin para o jQuery. Formate nos padrões <i>999.99</i> e <i>999,99</i> com apenas uma linha de código!</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/Decimal-Mask" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>jquery.easyDragDrop</h2>
+              <p>Com esta extenção para o jQuery é possivel criar interações <i>drag'n'drop</i> de maneira simples e <b>objetiva</b>. Foi desenvolvido com a finalidade de se adaptar a qualquer layout de interface e funciona mesmo em elementos cujos pais tem <i>position:relative</i>.</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/Tools4Tips" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>jQuery.unselectable</h2>
+              <p>Este plugin impede a seleção de conteúdo pelo mouse em uma aplicação, foi projetado para evitar que em aplicação com muita interação do tipo <i>drag'n'drop</i>, partes da interface fiquem selecionadas.</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/jquery.unselectable" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>StackJS</h2>
+              <p>Esta é uma proposta de gerenciamento de objetos em JavaScript, concebida para resolver o problema de compartilhamento de objetos globais dentro de apps com <i>namespace</i>.</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/Tools4Tips" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>Footer Plugin</h2>
+              <p>O Footer Plugin é uma extensão para o jQuery desenvolvida a partir da necessidade de manter o rodapé dos sites após do conteúdo, porém nunca longe do limite inferior da janela do browser. foi atualizado diversas vezes e atualmente é usado em alguns projetos corporativos.</p>
+              <div class="app-links">
+                <a href="http://madeinstefano.github.com/Footer-Plugin" target="_blank">site do projeto</a>
+                <a href="https://github.com/madeinstefano/Footer-Plugin" target="_blank">github</a>
+                <a href="http://archive.plugins.jquery.com/project/footer" target="_blank">jquery.plugin</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+          </div>
+          
+          <div class="column right">
+            <div class="app-item">
+              <h2>Time Mask</h2>
+              <p>Formatar um campo como <i>hh:mm</i> nunca foi tão simples com este plugin para o jQuery. Importe e saia usando.</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/Time-Mask" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>jQuery.dragScroller</h2>
+              <p>Este plugin para o jQuery permite a aplicação de um scroll do tipo "touch screen" para sua app. Muito útil para o desenvolvimento de apps ou sites adaptados para dispositívos móveis</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/jQuery.dragScroller" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>LoggerJS</h2>
+              <p>O LoggerJs é um lib para ser usada duante o desenvolvimento de apps javascript, ela permite <i>loggar</i> informações relevantes de maneira apropriada, considerando os recursos do browser utilizado.</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/Tools4Tips" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>Tools4Tips</h2>
+              <p>Gere textos de ajuda ou "texto de dicas" de maneira simples e dinâmica. O mais simples e funcional plugin do jQuery do gênero.</p>
+              <div class="app-links">
+                <a href="https://github.com/madeinstefano/Tools4Tips" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>time-n-go</h2>
+              <p>Este é um cronômetro online focado na usabilidade, simplicidade e beleza.</p>
+              <div class="app-links">
+                <a href="http://madeinstefano.github.com/time-n-go" target="_blank">ver app</a>
+                <a href="https://github.com/madeinstefano/time-n-go" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+            
+            <div class="app-item">
+              <h2>Redline</h2>
+              <p>O Redline é um contador reverso que, além de uma barra de progresso e do display de tempo, dispara um aviso sonoro quando o tempo acaba.</p>
+              <div class="app-links">
+                <a href="http://madeinstefano.github.com/redline" target="_blank">ver app</a>
+                <a href="https://github.com/madeinstefano/redline" target="_blank">github</a>
+              </div>
+              <div style="clear:both"></div>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      
+      <div class="bar" id="sites">
+        <div class="bar-inner-wrapper">
+          <div id="sites-wrapper">
+            <div id="slides">
+              <div id="sites-trail">
+              </div>
+              <div id="slider-legend"></div>
+              <div id="sites-blocker"></div>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+      
+      <div class="bar" id="contact">
+        <div class="bar-inner-wrapper">
+          <div id="social-wrapper">
+            <div>
+              <a href="mailto:made.in.stefano@gmail.com" title="Mande-me um email" id="email" target="_blank"></a>
+              <a href="http://www.facebook.com/stefano.zanata" title="Facebook" id="facebook" target="_blank"></a>
+              <a href="https://twitter.com/madeinstefano" title="Twitter" id="twitter" target="_blank"></a>
+            </div>
+            <div>
+              <a href="https://github.com/madeinstefano" title="Github" id="github" target="_blank"></a>              
+              <a href="http://blog.szanata.com" title="Blogger" id="blogger" target="_blank"></a>
+              <a href="http://www.youtube.com/user/2sleeze" title="Youtube" id="youtube" target="_blank"></a>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    </div>
+    <script type='text/javascript' src='/javascripts/bundles/all/1353993323.js'></script>
+  </body>
+</html>
