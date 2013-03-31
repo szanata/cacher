@@ -22,8 +22,10 @@ body{
   display:inline-block;
   padding:3px 0;
 }
+#console span.end{color:#8880E8;}
+#console span.error{color:#E68845;}
 #input{
-  color:#F7994D;
+  color:#F7994D!important;
 }
 #data-parser{
   display:none;

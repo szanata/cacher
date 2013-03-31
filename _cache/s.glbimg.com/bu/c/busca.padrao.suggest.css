@@ -1,0 +1,157 @@
+/* detalhes do campo de busca e do botao do formulario */
+#busca-padrao{ height:37px; position:relative; width:300px; }
+#busca-padrao input{
+	background: url(http://s.glbimg.com/bu/i/input_bg_pequeno.png) repeat-x 0px -1px;
+	border: none;
+	border-top: 1px solid #b3b3b3;
+	border-bottom: 1px solid #e0e0e0;
+	color: #333;
+	float: left;
+	font-size:1.4em;
+	height: 24px;
+	padding:5px 5px 3px 5px;
+	width: 203px;
+}
+#busca-padrao input.buscaSimples{
+	background: url(http://s.glbimg.com/bu/i/input_bg_pequeno.png) repeat-x 0px -1px;
+	border: none;
+	border-top: 1px solid #b3b3b3;
+	border-bottom: 1px solid #e0e0e0;
+	color: #333;
+	float: left;
+	font-size:1.4em;
+	height: 18px;
+	padding:5px 5px 3px 5px;
+	width: 144px;
+}
+#busca-padrao input.estadoInicial{color:#999;}
+#busca-padrao label.lupa{
+	background:url(http://s.glbimg.com/bu/i/input_label_pequeno.png) no-repeat left top;
+	display:block;
+	float:left;
+	height:34px;
+	text-indent:-99999px;
+	width:26px;
+}
+#busca-padrao label.cantoEsquerdo{
+	background:url(http://s.glbimg.com/bu/i/canto-esquerdo.png) no-repeat left top;
+	display:block;
+	float:left;
+	height:28px;
+	text-indent:-99999px;
+	width:5px;
+}
+#busca-padrao button{
+	/*background:#06d;*/
+	background:url(http://s.glbimg.com/bu/i/botao_pequeno.png) no-repeat left top;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size:1.2em;
+	float:left;
+	height: 34px;
+	letter-spacing:-0.05em;
+	padding:0px 0px 3px 0px;
+	width: 61px;
+}
+
+#busca-padrao button:hover{
+	/*background:#06d;*/
+	background:url(http://s.glbimg.com/bu/i/botao_pequeno.png) no-repeat left bottom;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size:1.2em;
+	float:left;
+	height: 34px;
+	letter-spacing:-0.05em;
+	padding:0px 0px 3px 0px;
+	width: 61px;
+}
+
+#busca-padrao button.buscaSimples {
+	/*background:#06d;*/
+	background:url(http://s.glbimg.com/bu/i/botao_pequeno_WP.png) no-repeat left top;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size:1.2em;
+	float:left;
+	height: 28px;
+	letter-spacing:-0.05em;
+	padding:0px 0px 3px 0px;
+	width: 31px;
+}
+
+#busca-padrao button.buscaSimples:hover{
+	background:url(http://s.glbimg.com/bu/i/botao_pequeno_WP.png) no-repeat left top;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size:1.2em;
+	float:left;
+	height: 28px;
+	letter-spacing:-0.05em;
+	padding:0px 0px 3px 0px;
+	width: 31px;
+	}
+
+/* configuracoes do box de sugestoes */
+#sugestoes{
+	background:#fff;
+	border:solid 1px #ddd;
+	border-top:none;
+	float:left;
+	margin:0px 0px 0px 0px;
+	position:absolute;
+	width:298px;
+	-moz-border-radius: 2px;
+   	-webkit-border-radius: 2px;
+}
+#sugestoes ul{font-size:1.08em;}
+#sugestoes ul li{list-style:none; margin:0px 0px 0px 0px; clear: both;}
+
+/* classes para personalizar on evento de hover, sobre os items do suggest */
+.sugestao{ background:#fff; color:#333; cursor:pointer; padding:3px 0px 3px 10px; }
+.sugestao-hover{ background:#06d; color:#fff; cursor:pointer; padding:3px 0px 3px 10px; }
+.sugestao-hover span, .sugestao-hover label{color: #ccc;}
+.sugestao-hover label em{ color:#fff; }
+
+/* personalizacao dos items de buscas fixas */
+.buscaFixa{ background:#f9f9f9; border-top:solid 1px #ddd; margin-top:3px; padding:3px 0px 3px 0px; }
+.buscaFixaHover{background:#06d; border-top:solid 1px #ddd; margin-top:3px; padding:3px 0px 3px 0px;}
+.buscaFixa em{ color:#333; font-style: normal; }
+.buscaFixa label{ color:#666; cursor:pointer; }
+.buscaFixaHover em{ color:#fff; font-style: normal; }
+.buscaFixaHover label{ color:#e6e6e6; cursor:pointer; }
+.buscaFixa span{ display:none; }
+.buscaFixa a:link{ color:#666; display:block; padding:4px 0px 4px 10px; text-decoration:none; font-weight:normal; }
+.buscaFixa a:visited{ color:#666; display:block; padding:4px 0px 4px 10px; text-decoration:none; font-weight:normal; }
+.buscaFixa a:hover{ color:#fff; display:block; padding:4px 0px 4px 10px; text-decoration:none; }
+.buscaFixa a:active{ color:#fff; display:block; padding:4px 0px 4px 10px; text-decoration:none; }
+
+/* featured content */
+.imgPequenaFeaturedContent{background:#ccc;height: 34px; margin:5px 8px 4px 10px; width: 45px; float:left; overflow: hidden;}
+.featuredContent{height: 44px;padding: 0px;}
+.linkFeaturedContent:link{font-size: 1.1em;color:#333;display: block; padding: 14px 0px 13px 0px;}
+.linkFeaturedContent:visited{font-size: 1.1em;color:#333;display: block; padding: 14px 0px 13px 0px;}
+.linkFeaturedContent:hover{font-size: 1.1em;color:#fff;display: block; padding: 14px 0px 13px 0px;}
+.linkFeaturedContent:active{font-size: 1.1em;color:#fff;display: block; padding: 14px 0px 13px 0px;}
+
+/* mensagem de feedback, aviso */
+.msg-feedback{border:solid 1px #afafaf;background:#f6f6f6;position:absolute;margin:3px 0 0 0;display:none;float:left;width:298px;-moz-border-radius:3px;-webkit-border-radius: 3px;}
+.msg-feedback .canto-arredondado{width:5px; height:5px;position:absolute;}
+.msg-feedback .lt{background:url(http://s.glbimg.com/bu/i/canto-arredondado.png) no-repeat left top; left:-1px; margin-top:-1px; }
+.msg-feedback .rt{background:url(http://s.glbimg.com/bu/i/canto-arredondado.png) no-repeat right top; right:-1px; margin-top:-1px;}
+.msg-feedback .lb{background:url(http://s.glbimg.com/bu/i/canto-arredondado.png) no-repeat left bottom; left:-1px; margin-top:-4px;}
+.msg-feedback .rb{background:url(http://s.glbimg.com/bu/i/canto-arredondado.png) no-repeat right bottom; right:-1px; margin-top:-4px;}
+.msg-feedback .seta{position:absolute;top:-7px;left:15px;}
+.msg-feedback img.fechar{border:none;}
+.msg-feedback a{float:right;margin:5px 5px 0px 0px;}
+.msg-feedback .icone{float:left;margin:12px 10px 10px 10px;}
+.msg-feedback p{font-size:0.9em;margin:5px 0 0 0;}
+.msg-feedback p.aviso{margin:15px 0 0 0;color:#343434;}
+.msg-feedback p.descricao{margin:3px 0 15px 0;color:#858585;}
+.msg-feedback p span{font-weight:bolder;margin:10px 0 0 0;}
+
+.textoSugestoes{background:#fff;border-top:solid 1px #ddd;cursor:auto;color:#666;font-size:.9em;font-style:italic;margin:10px 10px 3px;padding:6px 10px 2px 0;text-align:right;}

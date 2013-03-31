@@ -5,9 +5,8 @@ $(function (){
     socket = new WebSocket('ws://localhost:8090', 'protocolOne'),
     k = new Konsole();
     
-  socket.onopen = function (event) {
-    //socket.send(); 
-  };
+  // just registering
+  socket.onopen = function (event) {};
   
   socket.onmessage = function (e) {
     var data = JSON.parse(e.data);
@@ -16,8 +15,19 @@ $(function (){
         k.log(data.msg);
         k.ask('Enter the target site:', function (url){
           socket.send(JSON.stringify({type:'set-url',val:url}));
-          k.log('Processing');
+          k.log('Processing...').log('>');
         });
+        break;
+      case 'end':
+        k.log(data.msg,'end');
+        k.ask('Reset? (Y/y) yes', function (answer){
+          if (/Y/ig.test(answer)){
+            window.location.reload();
+          }
+        });
+        break;
+      case 'error':
+        k.log(data.msg,'error');
         break;
       case 'status':
         k.log(data.msg);
@@ -26,28 +36,40 @@ $(function (){
         k.progress(data.msg);
         break;
       case 'extract-refs':
-        k.log('Extracting references...');
+        k.log('Extracting references...').log('>');
         var 
           html = $.parseHTML(data.val,document,true),
           $parsed = $(html),
           refs = [];
-        $parsed.filter('[src]').each(function (){
-          refs.push($(this).attr('src'));
-          k.log(refs[refs.length-1]);
-        });
-        $parsed.filter('[href]').each(function (){
-          if ($(this).attr('type') === 'text/css'){
-            refs.push($(this).attr('href'));
-            k.log(refs[refs.length-1]);
+          
+        refs.putRef = function (ref){
+          if (this.indexOf(ref) === -1){
+            this.push(ref);
+            k.log(this[this.length-1]);
+          }
+        }
+        
+        // external/internal file detection
+        $parsed.find('*').andSelf().each(function (a){
+          if ($(this).attr('src')){
+            refs.putRef($(this).attr('src'));
+          }
+          if ($(this).attr('data')){
+            refs.putRef($(this).attr('data'));
+          }
+          if ($(this).attr('href') && ($(this).attr('type') === 'text/css' || ['icon','stylesheet'].indexOf($(this).attr('rel')) > -1)){
+            refs.putRef($(this).attr('href'));
           }
         });
+        
         socket.send(JSON.stringify({type:'refs',val:refs}));
         break;
     }
   };
  
   
-  // Konsole class
+  // Konsole object
+  // log some stuff right in the mouth
   function Konsole() {
   
     var 
@@ -65,17 +87,18 @@ $(function (){
     
     function afterPrint(){
       $cursor.insertAfter($c.find(':last-child'));
-      $c.scrollTop($c.find(':last-child').position().top);
+      $('window, body').scrollTop(($c.find('> *:last-child').offset().top - 250))
     }
   
     Object.defineProperties(this, {
       log: {
-        value: function (v) { 
+        value: function (v, type) { 
           $c.append(
-            $('<span></span>').text(v),
+            $('<span></span>').text(v).addClass(type),
             $('<br />')
           );
           afterPrint();
+          return this;
         },
         enumerable: true
       },
@@ -90,6 +113,7 @@ $(function (){
             );
           }
           afterPrint();
+          return this;
         },
         enumerable: true
       },
@@ -98,6 +122,13 @@ $(function (){
           this.log(question);
           $c.append($('<span id="input" />'));
           $(window).on('keydown.input', function (e){
+            if (e.ctrlKey && e.keyCode === 86){
+              var value = prompt('Past here');
+              if (value){
+                $('#input').text(value.substring(0,value.length - 1));
+              }
+              return;
+            }
             if (e.keyCode === 8){
               e.preventDefault();
               var value = $('#input').text();
@@ -109,7 +140,7 @@ $(function (){
             var value = $('#input').text();
             if (e.keyCode === 13){
               $(window).unbind('keypress.input');
-              $(this).removeAttr('id');
+              $('#input').removeAttr('id');
               $c.append($('<br />'));
               callback(value);
             }else{
@@ -118,6 +149,7 @@ $(function (){
             return false;
           });
           afterPrint();
+          return this;
         }
       }
     });

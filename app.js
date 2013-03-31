@@ -1,13 +1,26 @@
+/* 
+* node.js app
+* @author szanata
+* purpose: given some site url, locate and cache (emulate browser cache behavior)
+* every external file, excepts for those insite another external file, and save
+* locally
+*/
 
-var request = require("request"),
+var 
+  request = require("request"),
   fs = require('fs'),
   path = require('path'),
   express = require('express'),
+  seeker = require('./seeker.js'),
+  helpers = require('./helpers.js'),
   app = express(),
   assetManager = require('connect-assetmanager'),
   WebSocketServer = require('ws').Server,
-  wss = new WebSocketServer({port: 8090});
+  wss = new WebSocketServer({port: 8090}),
+  baseUrl = undefined,
+  remainingFiles = 0;
 
+// minification (just for demo purpose, locally it's unecessary)
 var assetManagerGroups = {
   'css': {
     'route': /\/static\/style\.css/,
@@ -22,7 +35,11 @@ var assetManagerGroups = {
     'files': [ 'jquery-1.9.1.min.js', 'cacher.js' ]
   }
 };
-  
+
+/*
+* websocket communication protocol
+* fullduplex web communication
+*/
 wss.on('connection', function (ws) {
  
   global.ws = ws;
@@ -30,21 +47,24 @@ wss.on('connection', function (ws) {
     var data = JSON.parse(raw);
     switch (data.type){
       case 'set-url':
-        var url = qualifyUrl(data.val);
-        requestData(url, function (content){
+        baseUrl = helpers.qualifyUrl(data.val);
+        seeker.requestData(baseUrl, function (content){
           ws.send(JSON.stringify({type:'extract-refs',val:content}));
         });
         break;
       case 'refs':
         ws.send(JSON.stringify({type:'status',msg:'Starting file storage...'}));
-        processRefs(data.val);
+        if (data.val.length === 0){
+          ws.send(JSON.stringify({type:'status',msg:'No files found!'}));
+        }else{
+          processRefs(data.val);
+        }
     }
   });
   ws.send(JSON.stringify({type:'start',msg:'Yeah! We\'re online!'}));
 });
 
-
-
+// app start configurations: nothing to do here
 app.configure(function (){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -55,114 +75,95 @@ app.configure(function (){
   app.use(express.static(__dirname + '/public', {maxAge: 86400000}));
   app.use(app.router);
   fs.mkdir(__dirname + '/_cache');
-  fs.mkdir(__dirname + '/_temp');
 });
 
 app.get('/', function (req,res){
   res.render('index');
 });
 
-app.listen(process.env.PORT || 8088);
+app.listen(process.env.PORT || 8080);
 
-function qualifyUrl(url){
-  if (!/$http:\/\/|$https:\/\//.test(url)){
-    return 'http://' + url;
-  }
-  return url;
-}
-
-function requestData(url, callback){
-  ws.send(JSON.stringify({type:'status',msg:'Fetching from ' + url}));
-  var req = request.get({
-    uri: url,
-    headers: {'Connection': 'keep-alive'}
-  }); 
-  req.on('error', function (err){
-    ws.send(JSON.stringify({type:'error',msg:'Error ' + err}));
-  });
-  req.on('response', function (res){
-    var 
-      content = '',
-      len = parseInt(res.headers['content-length'], 10),
-      total = 0;
-
-    res.on('data', function (chunk){
-      content += chunk;
-      total += (chunk.length / len) * 100;
-      ws.send(JSON.stringify({type:'progress',msg:Math.round(total) + '%'}));
-    });
-    
-    res.on('end', function (){
-      callback(content);
-    });
-  });
-}
-
-function getLastModifiedDate(link,callback){
-  var options = {
-    uri: link,
-    method: 'HEAD',
-    headers: {'Connection': 'keep-alive'}
-  }
-  var req = request(options, function (error,res){
-    callback(res.headers['last-modified'] ? res.headers['last-modified'] : null);
-  });
-}
-
-function saveFile(link, name){
-  fs.writeFile(name, function (){
-    console.log('file created');
-    var writeStream = fs.createWriteStream(name);
-    request(link).pipe(writeStream).on('close', function (){
-      getLastModifiedDate(link, function (date){
-        fs.utimesSync(name, new Date(), new Date(date));
-      });
-    }); 
-  });
-}
-
+/*
+* using a bunch of references start this shit
+*/
 function processRefs(refs){
-  for (var i = 0, li = refs.length; i < li; i++){
-    (function (ref){
+  remainingFiles = refs.length;
+  refs.forEach(function (ref){
+    (function (_ref){
       var 
-        fileName = getFile(ref),
-        dir = seekDir(ref),
+        fileName = helpers.getFileName(_ref),
+        dir = seekDir(_ref),
         cachedFile = path.join(dir, fileName);
       
+      ws.send(JSON.stringify({type:'status',msg:'Handling with: {0}'.format(ref)}));
       fs.exists(cachedFile, function (exists){
         if (exists){
-          getLastModifiedDate(ref, function (date){
-            if (date != null){
-              fs.stat(cachedFile, function (err,props){
-                if (props.mtime.getTime() !==  new Date(date).getTime()){
-                  fs.unlink(cachedFile, function (){
-                    saveFile(ref,cachedFile);
-                  });
-                }
-              });
-            }
-          });
+          checkLastModfiedData(_ref, cachedFile);
         }else{
-          saveFile(ref,cachedFile);
+          ws.send(JSON.stringify({type:'status',msg:'Saving file: {0}'.format(cachedFile)}));
+          seeker.saveFile(_ref,cachedFile);
+          notifyFileProcessEnd();
         }
       });
-    })(refs[i]);
+    })(helpers.isAbsoluteUrl(ref) ? ref : baseUrl + ref);
+  });
+}
+
+/*
+* try to get last modify date from external counterpart
+*/
+function checkLastModfiedData(ref, cachedFile){
+  seeker.getLastModifiedDate(ref, function (date){
+    if (date != null){
+      updateFile(ref, cachedFile, date);
+    }else{
+      ws.send(JSON.stringify({type:'error',msg:'Can\'t read header (maybe your network have proxy :P), updating anyway: {0}'.format(cachedFile)}));
+      seeker.saveFile(ref,cachedFile);
+      notifyFileProcessEnd();
+    }
+  });
+}
+
+/*
+* when some file ends its verifications notify here to check if it's the last one
+*/
+function notifyFileProcessEnd(){
+  remainingFiles--;
+  if (remainingFiles === 0){
+    ws.send(JSON.stringify({type:'end',msg:'Process done.'}));
+    ws.close();
   }
 }
 
-function getFile(link){
-  return link.match(/[^\/]*$/)[0].replace(/\?|\\|<|>|:|\*|"/g,'');
+/*
+* update some file if remote counterpart is newer
+*/
+function updateFile(ref, cachedFile, date){
+  fs.stat(cachedFile, function (err,props){
+    if (props.mtime.getTime() !==  new Date(date).getTime()){
+      fs.unlink(cachedFile, function (){
+        ws.send(JSON.stringify({type:'status',msg:'File is newer (stored {0}, and stored {1}). Updating file: {2}'.format(props.mtime.toUTCString(), new Date(date).toUTCString(), cachedFile)}));
+        seeker.saveFile(ref,cachedFile);
+        notifyFileProcessEnd();
+      });
+    }else{
+      ws.send(JSON.stringify({type:'status',msg:'File not changed: {0}'.format(cachedFile)}));
+      notifyFileProcessEnd();
+    }
+  }); 
 }
 
-function seekDir(link){
-  var protocol = link.match(/^(http|https):\/\//g)[0];
-  link = link.replace(protocol,'');
-  var dirs = link.split('/');
-  dirs.pop();
-  var baseName = path.join(__dirname, '_cache');
-  for (var i = 0, li = dirs.length; i < li; i++){
-    baseName = path.join(baseName,dirs[i]);
-    try{fs.mkdirSync(baseName);}catch (e){}
-  }
-  return baseName;
+/*
+* using some file path, make the dirs to match it's external taxonomy
+*/
+function seekDir(ref){
+  ref = ref.replace(/^(http|https):\/\//i,'');
+  var dirs = ref.split('/');
+  dirs.pop(); // removes file name
+  var filePath = path.join(__dirname, '_cache');
+  dirs.forEach(function (dir){
+    filePath = path.join(filePath,dir);
+    try{fs.mkdirSync(filePath);}catch (e){}
+  });
+  return filePath;
 }
